@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -23,7 +24,7 @@ const Register = () => {
                 })
 
                 const data = await response.json();
-                console.log("This is our translated data: ", data)
+                // console.log("This is our translated data: ", data)
                 localStorage.setItem("token", data.data.token)
 
         } catch (error) {
@@ -38,6 +39,12 @@ const Register = () => {
     function updatePasswordState(event) {
         setPassword(event.target.value)
     };
+
+    function redirectToProfile () { 
+            const currentToken = localStorage.getItem("token");
+            currentToken && currentToken.length ? useNavigate("/profile")
+            : console.log("Try again!") } 
+    
 
     return (
         <div id="register-container">
@@ -55,3 +62,6 @@ const Register = () => {
 };
 
 export default Register;
+
+// Need to add redirectToProfile function to register user function, so submitting the form redirects
+// the user to the profile page

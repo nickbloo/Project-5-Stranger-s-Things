@@ -15,3 +15,6 @@ const PostDetails = () => {
 };
 
 export default PostDetails;
+
+
+// Need to render posts individually without another api call
