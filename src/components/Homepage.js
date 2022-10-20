@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Posts from "./Posts";
 import { Outlet } from "react-router-dom";
 
 const Homepage = () => {

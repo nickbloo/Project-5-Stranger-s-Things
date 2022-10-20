@@ -27,7 +27,7 @@ html, body {
     color: rgb(194, 194, 194);
 }
 
-#login-container {
+#login-container, #register-container {
     display: flex;
     justify-content: center;
     font-size: xx-large;
@@ -39,7 +39,7 @@ input {
     height: 20%;
 }
 
-#login-btn {
+#login-btn, #register-btn {
     width: 100%;
     height: auto;
 }

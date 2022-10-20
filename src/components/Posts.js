@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
+import PostDetails from "./PostDetails";
 
 const Posts = () => {
     const [listings, setListings] = useState([]);
@@ -31,7 +33,7 @@ const Posts = () => {
                         <p><b>Description: </b>{eachListing.description}</p>
                         <p><b>Location: </b>{eachListing.location}</p>
                         <p><b>Seller: </b>{eachListing.author.username}</p>
-                        <button type="submit">View More</button>
+                        <Link to={`posts/${idx}`}>Read more</Link>
                     </div>
                 }) : <div id="loading-div">Loading...</div>
             }

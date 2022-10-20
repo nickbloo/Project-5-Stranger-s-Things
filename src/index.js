@@ -5,8 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import Posts from "./components/Posts";
 import ErrorPage from "./components/ErrorPage";
-import About from "./components/About";
+import Profile from "./components/Profile";
 import Login from "./components/Login";
+import Register from "./components/Register";
+import PostDetails from "./components/PostDetails";
 import Navbar from "./components/Navbar";
 
 
@@ -20,16 +22,24 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "/about",
-                element: <About />
+                path: "/profile",
+                element: <Profile />
             },
             {
                 path: "/login",
                 element: <Login />
             },
             {
+                path: "/register",
+                element: <Register />
+            },
+            {
                 path: "/posts",
                 element: <Posts />
+            },
+            {
+                path: "/posts/posts/:id",
+                element: <PostDetails />
             }
         ]
     }
