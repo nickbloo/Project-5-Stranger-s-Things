@@ -1,20 +1,32 @@
 import React from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 
 
 const PostDetails = () => {
-    // const listingDetails = useOutletContext();
-    // const { currentListing } = useParams();
-    // console.log("Params obj: ", useParams());
-    // console.log("Actual parameter: ", currentListing);
+    const renderedListings = useOutletContext();
+    const { id } = useParams();
+    const currentListing = renderedListings[id];
+
     return (
-        <div>
-            <p>Read more here</p>
+        <div id="post-details-container">
+            {
+                currentListing.title && currentListing.title.length ?
+                <div>
+                        <h2>{currentListing.title}</h2>
+                        <h4>Price: {currentListing.price}</h4>
+                        <p><b>Description: </b>{currentListing.description}</p>
+                        <p><b>Location: </b>{currentListing.location}</p>
+                        <p><b>Seller: </b>{currentListing.author.username}</p>
+                        <p>Posted on: {currentListing.createdAt}</p>
+                        <p>Latest activity: {currentListing.updatedAt}</p>
+                        <Link to="/profile">Message this seller</Link>
+                        <br />
+                        <Link to="/posts">Browse more listings</Link>
+                </div>
+         : <div id="loading-div">Loading...</div>
+            }
         </div>
     )
 };
 
 export default PostDetails;
-
-
-// Need to render posts individually without another api call

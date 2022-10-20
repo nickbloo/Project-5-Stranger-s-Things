@@ -19,7 +19,6 @@ const Profile = () => {
                     })
 
                 const data = await response.json();
-                console.log("The profile data: ", data)
                 setUsername(data.data.username)
                 setPosts(data.data.posts)
                 setMessages(data.data.messages)
@@ -28,17 +27,21 @@ const Profile = () => {
                 console.log(error)
             }
         }
-
-        loadProfileInfo();
+        loadProfileInfo() 
 
     }, []);
 
     return (
         <div>
             <p>Username: {username}</p>
-            <p>Your posts: {posts}</p>
+            <button>Log Out</button>
+            <br />
+            <p>Your posts: {JSON.stringify(posts.title)}</p>
+            <button>Make New Post</button>
+            <br />
             <p>Messages: {messages}</p>
-        </div>
+            <button>Send New Message</button>
+        </div> 
     )
 };
 
@@ -47,3 +50,5 @@ export default Profile;
 // Add, delete, edit posts
 // Send and view messages
 // Log out button that deletes token from local storage
+// Some problem with, when logged in, the messages and posts cause the page to throw an error
+    // Likely due to trying to render an array without .map but I've had issues writing out .map

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function logInUser(event) {
         event.preventDefault();
@@ -26,6 +27,7 @@ const Login = () => {
             const data = await response.json();
             console.log("The data: ", data);
             localStorage.setItem("token", data.data.token)
+            navigate("/profile");
 
         } catch (error) {
             console.log(error)
@@ -58,7 +60,3 @@ const Login = () => {
 };
 
 export default Login
-
-// Same thing on the register page: 
-// Need to add a redirectToProfile function to logInUser function, so submitting the form redirects
-// the user to the profile page
