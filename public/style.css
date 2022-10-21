@@ -48,7 +48,13 @@ input {
     border: 2px solid rgb(194, 194, 194);
 }
 
-.user-post-div {
+.user-display-div {
     border: 2px solid rgb(194, 194, 194);
     width: 50%;
+}
+
+.profile-input {
+    width: 40%;
+    height: 2em;
+    margin: 3px;
 }

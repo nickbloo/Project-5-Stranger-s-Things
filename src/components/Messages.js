@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { Link, useOutletContext, useParams, useNavigate } from "react-router-dom";
 
 const Messages = () => {
-    
+    const [,,,messages] = useOutletContext();
+    const navigate = useNavigate();
+
 
     return (
         <div>
-            <form></form>
+            <form>
+                <h2>Send a new message</h2>
+            </form>
+            <h2>Your Messages: </h2>
+            { messages && messages.length ? messages.map((eachUserMessage, idx) => {
+                return <div className="user-display-div" key={idx}>
+                        <p><b>From: </b>{eachUserMessage.fromUser.username}</p>
+                        <p>{eachUserMessage.content}</p>
+                </div>
+            }) : null }
         </div>
     )
 };

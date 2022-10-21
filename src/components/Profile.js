@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useOutletContext, useParams, useNavigate } from "react-router-dom";
 import NewPost from "./NewPost";
+import Messages from "./Messages";
 
 const Profile = () => {
     function logOutUser(event) {
@@ -12,7 +13,7 @@ const Profile = () => {
     const currentToken = localStorage.getItem("token");
     const navigate = useNavigate();
 
-    const [, username, posts, messages] = useOutletContext();
+    const [, username] = useOutletContext();
 
     return (
         <div>
@@ -23,11 +24,9 @@ const Profile = () => {
                         <button type="submit">Log Out</button>
                     </form>
                     <br />
-                    <h2>Your posts: </h2>
                     <NewPost />
                     <br />
-                    <p>Messages: {messages}</p>
-                    <Link to="/messages">Send New Message</Link>
+                    <Messages />
                 </div> : 
                 <div>
                     <p>Please log in or register for an account</p>
