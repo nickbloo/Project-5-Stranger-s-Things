@@ -1,10 +1,21 @@
 import React from "react";
+import { Link, useOutletContext, useParams, useNavigate } from "react-router-dom";
+
 
 const NewPost = () => {
+
+    const [,, posts,] = useOutletContext();
+
     return (
         <div>
-            <p>New Post</p>
-        </div>
+            { posts && posts.length ? posts.map((eachUserPost, idx) => {
+                return <div className="user-post-div" key={idx}>
+                    <p>{eachUserPost.title}</p>
+                    <p>Price: {eachUserPost.price}</p>
+                    <button>Delete This Post</button>
+                </div>
+            }) : null }
+        </div> 
     )
 };
 

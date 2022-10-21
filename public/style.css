@@ -47,3 +47,8 @@ input {
 .listing-div {
     border: 2px solid rgb(194, 194, 194);
 }
+
+.user-post-div {
+    border: 2px solid rgb(194, 194, 194);
+    width: 50%;
+}

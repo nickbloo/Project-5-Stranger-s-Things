@@ -19,7 +19,35 @@ const Homepage = () => {
 
         fetchListings();
 
-    }, [])
+    }, []);
+
+    const [username, setUsername] = useState("");
+    const [posts, setPosts] = useState([]);
+    const [messages, setMessages] = useState([]);
+
+    useEffect(() => {
+        async function loadProfileInfo() {
+            try {
+                const response = await fetch("https://strangers-things.herokuapp.com/api/2209-ftb-mt-web-ft/users/me",
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        },
+                    })
+
+                const data = await response.json();
+                setUsername(data.data.username)
+                setPosts(data.data.posts)
+                setMessages(data.data.messages)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        loadProfileInfo() 
+
+    }, []);
 
     return (
         <div>
@@ -27,7 +55,7 @@ const Homepage = () => {
                 <h1>Stranger's Things</h1>
                 <Navbar />
             </div>
-            <Outlet context={listings} />
+            <Outlet context={[listings, username, posts, messages]} />
         </div>
     )
 };
