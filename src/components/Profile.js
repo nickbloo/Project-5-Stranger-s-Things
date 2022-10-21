@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const [username, setUsername] = useState("");
@@ -6,6 +7,13 @@ const Profile = () => {
     const [messages, setMessages] = useState("");
 
     const currentToken = localStorage.getItem("token");
+    const navigate = useNavigate();
+
+    function logOutUser(event) {
+        event.preventDefault();
+        localStorage.removeItem("token");
+        navigate("/login");
+     };
 
     useEffect(() => {
         async function loadProfileInfo() {
@@ -22,6 +30,8 @@ const Profile = () => {
                 setUsername(data.data.username)
                 setPosts(data.data.posts)
                 setMessages(data.data.messages)
+                console.log(data.data.posts)
+                console.log(data.data.messages)
 
             } catch (error) {
                 console.log(error)
@@ -33,22 +43,26 @@ const Profile = () => {
 
     return (
         <div>
-            <p>Username: {username}</p>
-            <button>Log Out</button>
-            <br />
-            <p>Your posts: {JSON.stringify(posts.title)}</p>
-            <button>Make New Post</button>
-            <br />
-            <p>Messages: {messages}</p>
-            <button>Send New Message</button>
-        </div> 
+            { currentToken && currentToken.length ?
+                <div id="user-info-container">
+                    <form onSubmit={logOutUser}>
+                        <p>Username: {username}</p>
+                        <button type="submit">Log Out</button>
+                    </form>
+                    <br />
+                    <p>Your posts: {JSON.stringify(posts.title)}</p>
+                    <Link to="/newpost">Make a New Post</Link>
+                    <br />
+                    <p>Messages: {messages}</p>
+                    <Link to="/messages">Send New Message</Link>
+                </div> : 
+                <div>
+                    <p>Please log in or register for an account</p>
+                    <Link to="/login">Click Here</Link>
+                </div>
+            }
+        </div>
     )
 };
 
 export default Profile;
-
-// Add, delete, edit posts
-// Send and view messages
-// Log out button that deletes token from local storage
-// Some problem with, when logged in, the messages and posts cause the page to throw an error
-    // Likely due to trying to render an array without .map but I've had issues writing out .map

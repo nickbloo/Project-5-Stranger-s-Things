@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
-import Posts from "./Posts";
 import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
@@ -28,7 +27,7 @@ const Homepage = () => {
                 <h1>Stranger's Things</h1>
                 <Navbar />
             </div>
-            <Outlet context={listings}/>
+            <Outlet context={listings} />
         </div>
     )
 };

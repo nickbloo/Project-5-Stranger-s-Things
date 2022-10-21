@@ -9,8 +9,8 @@ import Profile from "./components/Profile";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import PostDetails from "./components/PostDetails";
-import Navbar from "./components/Navbar";
-
+import Messages from "./components/Messages";
+import NewPost from "./components/NewPost";
 
 const appElement = document.getElementById("app");
 const root = createRoot(appElement);
@@ -40,6 +40,14 @@ const router = createBrowserRouter([
             {
                 path: "/posts/:id",
                 element: <PostDetails />
+            },
+            {
+                path: "/messages",
+                element: <Messages />
+            },
+            {
+                path: "/newpost",
+                element: <NewPost />
             }
         ]
     }
