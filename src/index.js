@@ -42,7 +42,7 @@ const router = createBrowserRouter([
                 element: <PostDetails />
             },
             {
-                path: "/messages",
+                path: "/messages/:id",
                 element: <Messages />
             },
             {

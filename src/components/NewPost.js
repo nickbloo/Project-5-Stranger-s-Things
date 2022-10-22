@@ -5,6 +5,7 @@ import { Link, useOutletContext, useParams, useNavigate } from "react-router-dom
 const NewPost = () => {
     const [,, posts,] = useOutletContext();
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -53,9 +54,8 @@ const NewPost = () => {
 
     async function deletePost(event) {
         event.preventDefault();
-        setPostId(eachUserPost.id)
         try {
-            const response = await fetch (`https://strangers-things.herokuapp.com/api/COHORT-NAME/posts/${postId}`, {
+            const response = await fetch (`https://strangers-things.herokuapp.com/api/2209-ftb-mt-web-ft/posts/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -74,6 +74,8 @@ const NewPost = () => {
     // function updatePostIdState(event) {
     //     setPostId(event.target.value)
     // };
+
+    console.log(posts);
 
 
     return (
@@ -115,4 +117,4 @@ export default NewPost;
 // Messages = see all messages and send a new message
 
 
-// setPostId(eachUserPost.id)
+// setPostId(eachUserPost._id)

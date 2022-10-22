@@ -14,7 +14,7 @@ const Posts = () => {
                         <p><b>Description: </b>{eachListing.description}</p>
                         <p><b>Location: </b>{eachListing.location}</p>
                         <p><b>Seller: </b>{eachListing.author.username}</p>
-                        <Link to={`/posts/${idx}`}>Read more</Link>
+                        <Link to={`/posts/${eachListing._id}`}>Read more</Link>
                     </div>
                 }) : <div id="loading-div">Loading...</div>
             }
