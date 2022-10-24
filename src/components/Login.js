@@ -6,6 +6,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    // Function for logging in user
     async function logInUser(event) {
         event.preventDefault();
         try {
@@ -34,7 +35,7 @@ const Login = () => {
         }
     };
 
-
+    // The two following functions set the username and password states to the values of the inputs rendered below
     function updateUsernameState(event) {
         setUsername(event.target.value)
     };
@@ -45,6 +46,7 @@ const Login = () => {
 
     return (
         <div id="login-container">
+            {/* Log in function invoked on submit */}
             <form onSubmit={logInUser}>Log in
                 <br />
                 <input type="text" value={username} onChange={updateUsernameState} placeholder="Your Username" required />

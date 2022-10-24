@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link, useOutletContext, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Messages = () => {
-    const [,,,messages] = useOutletContext();
+    // The id parameter is used to target where the message will be sent. 
+    // The following function sets the message to the content of the input below and makes the api call to send the message on submit
     const { id } = useParams();
     const navigate = useNavigate();
     const [content, setContent] = useState('');
@@ -17,7 +18,7 @@ const Messages = () => {
               body: JSON.stringify({ message: { content }})
         })
         .then((res) => res.json())
-        .then((data) => console.log('data: ', data))
+        navigate("/profile")
         .catch((err) => console.log('error: ', err))
     }, [content]); 
 
@@ -26,15 +27,9 @@ const Messages = () => {
             <form>
                 <h2>Send a new message</h2>
                 <input id="message-input" value={content} onChange={(e) => setContent(e.target.value)} />
+                <br />
                 <button onClick={handleSubmit}>Send Message</button>
             </form>
-            <h2>Your Messages: </h2>
-            { messages && messages.length ? messages.map((eachUserMessage, idx) => {
-                return <div className="user-display-div" key={idx}>
-                        <p><b>From: </b>{eachUserMessage.fromUser.username}</p>
-                        <p>{eachUserMessage.content}</p>
-                </div>
-            }) : null }
         </div>
     )
 };

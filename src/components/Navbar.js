@@ -12,3 +12,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// Navbar displayed at the top of the page at all times
+// Links to main elements

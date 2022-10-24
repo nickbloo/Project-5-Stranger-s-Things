@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import { Link, useOutletContext, useParams, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 
 
 const NewPost = () => {
@@ -12,7 +12,9 @@ const NewPost = () => {
     const [price, setPrice] = useState("");
 
     const [postId, setPostId] = useState("");
-    
+
+        // This function creates a new post and sets the needed information to the value of the respective getters
+        // Which are in turn set to the value of the inputs below
         async function addNewPost(event) {
             event.preventDefault();
             try {
@@ -39,7 +41,7 @@ const NewPost = () => {
             }
         };
 
-
+    
     function updateTitleState(event) {
         setTitle(event.target.value)
     };
@@ -52,10 +54,12 @@ const NewPost = () => {
         setPrice(event.target.value)
     };
 
-    async function deletePost(event) {
+    // Function to delete posts sets the POST ID in the api call to be a parameter of the function
+    // That parameter is passed to the function on submit
+    async function deletePost(event, postId) {
         event.preventDefault();
         try {
-            const response = await fetch (`https://strangers-things.herokuapp.com/api/2209-ftb-mt-web-ft/posts/${id}`, {
+            const response = await fetch (`https://strangers-things.herokuapp.com/api/2209-ftb-mt-web-ft/posts/${postId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -65,17 +69,17 @@ const NewPost = () => {
             const data = await response.json();
             navigate("/posts");
             console.log("successfully deleted");
+            console.log(data);
+            console.log(postId);
 
         } catch (error) {
             console.log(error)
         }
     };
 
-    // function updatePostIdState(event) {
-    //     setPostId(event.target.value)
-    // };
-
-    console.log(posts);
+    function updatePostIdState(event) {
+        setPostId(event.target.value)
+    };
 
 
     return (
@@ -92,14 +96,16 @@ const NewPost = () => {
                 <button type="submit">Post</button>
             </form>
             <h2>Your Posts: </h2>
-            { posts && posts.length ? posts.map((eachUserPost, idx) => {
+            {/* If a post is set to active it is rendered, if not then it is not. So "deleted" posts do not display, though they remain in the api. */}
+            { (posts && posts.length) ? posts.map((eachUserPost, idx) => {
+                if (eachUserPost.active == true) {
                 return <div className="user-display-div" key={idx}>
-                    <form onSubmit={deletePost} >
+                    <form onSubmit={ (e) => deletePost(e, eachUserPost._id) } >
                         <p>{eachUserPost.title}</p>
                         <p>Price: {eachUserPost.price}</p>
-                        <button type="submit">Delete This Post</button>
+                        <button value={postId} onClick={updatePostIdState} type="submit">Delete This Post</button>
                     </form>
-                </div>
+                </div> }
             }) : null }
         </div> 
     )
@@ -107,14 +113,7 @@ const NewPost = () => {
 
 export default NewPost;
 
-// This component will render out a view for your currents posts, give you the option to delete them
-// And make a new post
 
-// Will always check for a token before rendering, if no token you'll be asked to login/register
-
-
-//view posts= view and delete your posts
-// Messages = see all messages and send a new message
-
-
-// setPostId(eachUserPost._id)
+// Style a little bit
+// check it again
+// add comments for the code 

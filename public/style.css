@@ -46,6 +46,8 @@ input {
 
 .listing-div {
     border: 2px solid rgb(194, 194, 194);
+    padding-left: 0.8rem;
+    padding-bottom: 0.8rem;
 }
 
 .user-display-div {
@@ -57,4 +59,9 @@ input {
     width: 40%;
     height: 2em;
     margin: 3px;
+}
+
+#detailed-view-div {
+    padding-left: 0.8rem;
+    padding-bottom: 0.8rem;
 }

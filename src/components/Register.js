@@ -6,6 +6,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    // Function to register a user
     async function registerUser (event) {
         event.preventDefault();
         try {
@@ -25,7 +26,6 @@ const Register = () => {
                 })
 
                 const data = await response.json();
-                // console.log("This is our translated data: ", data)
                 localStorage.setItem("token", data.data.token)
                 navigate("/profile");
 
@@ -34,6 +34,7 @@ const Register = () => {
         }
     };
 
+    // Following two functions set the username and password states to the value of the inputs below
     function updateUsernameState(event) {
         setUsername(event.target.value)
     };
@@ -44,6 +45,7 @@ const Register = () => {
 
     return (
         <div id="register-container">
+            {/* Register user function invoked on submit */}
             <form onSubmit={registerUser}>Register Account
                 <br />
                 <input type="text" value={username} onChange={updateUsernameState} placeholder="Create Username" required />

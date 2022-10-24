@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
+    // Initial api call for posts, returns an object of all posts
+    // Post data set later as outlet context
     const [listings, setListings] = useState([]);
 
     useEffect(() => {
@@ -26,6 +28,8 @@ const Homepage = () => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
+        // Initial api call for user information
+        // Username posts and messages are set and used later as outlet context
         async function loadProfileInfo() {
             try {
                 const response = await fetch("https://strangers-things.herokuapp.com/api/2209-ftb-mt-web-ft/users/me",
@@ -55,7 +59,8 @@ const Homepage = () => {
                 <h1>Stranger's Things</h1>
                 <Navbar />
             </div>
-            <Outlet context={[listings, username, posts, messages]} />
+            {/* Sets the outlet with context to pass down to other components later */}
+            <Outlet context={[listings, username, posts, messages]} /> 
         </div>
     )
 };
